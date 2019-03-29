@@ -24,7 +24,7 @@ public class ArtGenerator {
 
                 writer.write(darknessChar);
             }
-            writer.write("\n");
+            writer.write("\r\n");
         }
         writer.close();
     }
