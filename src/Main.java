@@ -11,7 +11,8 @@ public class Main {
         System.out.println("Enter scaling percentage: ");
         double scaling = scanner.nextDouble();
         System.out.println("Invert colors? ('yes' for invert)");
-        boolean invert = scanner.nextLine().toLowerCase().equals("yes");
+        String input = scanner.next();
+        boolean invert = input.toLowerCase().equals("yes");
 
         createArtFromFile(imageFileName, outFileName, scaling, invert);
     }
