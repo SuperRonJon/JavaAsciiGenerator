@@ -14,7 +14,7 @@ class ImageProcessor {
     }
 
     double[][] getDarknessArray(){
-        double[][] pixels = new double[img.getHeight()][img.getWidth()];
+        double[][] pixels = new double[img.getWidth()][img.getHeight()];
         for(int i = 0; i < img.getWidth() - 1; i++){
             for(int j = 0; j < img.getHeight() - 1; j++){
                 int pixel_rgb = img.getRGB(i, j);

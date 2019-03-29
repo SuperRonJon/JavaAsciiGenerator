@@ -6,8 +6,9 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args){
-        ImageProcessor ip = new ImageProcessor("C:\\Users\\a3pseute\\Pictures\\quart.png");
+        ImageProcessor ip = new ImageProcessor("B:\\Pictures\\Saved Pictures\\thonking.png");
         double[][] darknessArray = ip.getDarknessArray();
-        System.out.println("test");
+        ArtGenerator ag = new ArtGenerator(darknessArray, "B:\\programming\\Ascii-Generator\\out.txt");
+        ag.create();
     }
 }
