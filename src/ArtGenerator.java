@@ -2,10 +2,11 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
-public class ArtGenerator {
+class ArtGenerator {
     private double[][] pixelDarkness;
     private PrintWriter writer;
-    private String[] asciiCharacters = {" ", ".", ":", "-", "=", "+", "*", "#", "%", "@"};
+    private String[] asciiCharactersInverse = {" ", ".", ":", "-", "=", "+", "*", "#", "%", "@"};
+    private String[] asciiCharacters = {"@", "%", "#", "*", "+", "=", "-", ":", ".", " "};
 
     ArtGenerator(double[][] darknessArray, String outputFileName){
         pixelDarkness = darknessArray;
@@ -16,11 +17,17 @@ public class ArtGenerator {
         }
     }
 
-    void create(){
+    void create(boolean invert){
         for(int i = 0; i < pixelDarkness.length; i++){
             for(int j = 0; j < pixelDarkness[i].length; j++){
                 int charIndex = (int)Math.floor(pixelDarkness[i][j] / (255.1 / asciiCharacters.length));
-                String darknessChar = asciiCharacters[charIndex];
+
+                String darknessChar = "";
+                if(invert){
+                    darknessChar = asciiCharactersInverse[charIndex];
+                }else {
+                    darknessChar = asciiCharacters[charIndex];
+                }
 
                 writer.write(darknessChar);
             }

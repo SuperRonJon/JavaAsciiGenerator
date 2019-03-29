@@ -10,15 +10,17 @@ public class Main {
         String outFileName = scanner.nextLine();
         System.out.println("Enter scaling percentage: ");
         double scaling = scanner.nextDouble();
+        System.out.println("Invert colors? ('yes' for invert)");
+        boolean invert = scanner.nextLine().toLowerCase().equals("yes");
 
-        createArtFromFile(imageFileName, outFileName, scaling);
+        createArtFromFile(imageFileName, outFileName, scaling, invert);
     }
 
-    private static void createArtFromFile(String filename, String outFile, double scaling){
+    private static void createArtFromFile(String filename, String outFile, double scaling, boolean invert){
         ImageProcessor processor = new ImageProcessor(filename);
         processor.scaleImage(scaling, scaling);
         double[][] darknessArray = processor.getDarknessArray();
         ArtGenerator generator = new ArtGenerator(darknessArray, outFile);
-        generator.create();
+        generator.create(invert);
     }
 }
