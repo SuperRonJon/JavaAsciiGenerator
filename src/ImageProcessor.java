@@ -1,10 +1,12 @@
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 class ImageProcessor {
     private BufferedImage img = null;
+
     ImageProcessor(String filepath){
         try {
             img = ImageIO.read(new File(filepath));
@@ -23,5 +25,18 @@ class ImageProcessor {
             }
         }
         return pixels;
+    }
+
+    void scaleImage(double fWidth, double fHeight){
+        int dWidth = new Double(img.getWidth() * fWidth).intValue();
+        int dHeight = new Double(img.getHeight() * fHeight).intValue();
+        BufferedImage scaledImage = null;
+        if(img != null){
+            scaledImage = new BufferedImage(dWidth, dHeight, img.getType());
+            Graphics2D graphics2D = scaledImage.createGraphics();
+            graphics2D.drawImage(img, 0, 0, dWidth, dHeight, null);
+            graphics2D.dispose();
+        }
+        img = scaledImage;
     }
 }
