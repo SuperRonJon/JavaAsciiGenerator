@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -10,6 +11,7 @@ class ArtGenerator {
 
     ArtGenerator(double[][] darknessArray, String outputFileName){
         pixelDarkness = darknessArray;
+        new File(outputFileName).getParentFile().mkdirs();
         try{
             writer = new PrintWriter(outputFileName, "UTF-8");
         }catch(FileNotFoundException|UnsupportedEncodingException e){
