@@ -10,7 +10,7 @@ class ColorBright extends Color {
     }
 
     /*
-        Determines the perceived brightness value of each pixel.
+        Determines the perceived brightness value of a given color.
         Formula sources: https://stackoverflow.com/questions/596216/formula-to-determine-perceived-brightness-of-rgb-color
         Stack overflow page sourced from: https://alienryderflex.com/hsp.html
     */
