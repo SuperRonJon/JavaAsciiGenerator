@@ -9,6 +9,11 @@ class ColorBright extends Color {
         super(rgb);
     }
 
+    /*
+        Determines the perceived brightness value of each pixel.
+        Formula sources: https://stackoverflow.com/questions/596216/formula-to-determine-perceived-brightness-of-rgb-color
+        Stack overflow page sourced from: https://alienryderflex.com/hsp.html
+    */
     double getBrightness(){
         final double pr = .299;
         final double pg = .587;
