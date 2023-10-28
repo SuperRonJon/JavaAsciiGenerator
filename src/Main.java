@@ -2,12 +2,16 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args){
+        if (args.length != 2) {
+            System.out.println("Invalid number of arguments.");
+            return;
+        }
         String configFilePath = args[0];
+        String imageFileName = args[1];
 
         String outDirectory = null;
         String scalingString = null;
@@ -28,15 +32,10 @@ public class Main {
             invertColorsString = "False";
         }
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter image file name: ");
-        String imageFileName = scanner.nextLine();
-
         double scaling = Double.parseDouble(scalingString);
         boolean invert = Boolean.parseBoolean(invertColorsString);
         String outFileName = new File(imageFileName).getName().replaceFirst("\\..*", ".txt");
         outFileName = outDirectory + outFileName;
-        scanner.close();
 
         createArtFromFile(imageFileName, outFileName, scaling, invert);
     }
