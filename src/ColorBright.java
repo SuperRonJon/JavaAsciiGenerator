@@ -1,4 +1,4 @@
-import java.awt.*;
+import java.awt.Color;
 
 class ColorBright extends Color {
     ColorBright(int r, int g, int b){

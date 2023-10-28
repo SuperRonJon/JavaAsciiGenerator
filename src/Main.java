@@ -43,8 +43,7 @@ public class Main {
     private static void createArtFromFile(String filename, String outFile, double scaling, boolean invert){
         ImageProcessor processor = new ImageProcessor(filename);
         processor.scaleImage(scaling, scaling);
-        double[][] darknessArray = processor.getDarknessArray();
-        ArtGenerator generator = new ArtGenerator(darknessArray, outFile);
+        ArtGenerator generator = new ArtGenerator(processor.getDarknessArray(), outFile);
         generator.create(invert);
     }
 }
