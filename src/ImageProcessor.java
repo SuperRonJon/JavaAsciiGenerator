@@ -28,8 +28,8 @@ class ImageProcessor {
     }
 
     void scaleImage(double fWidth, double fHeight){
-        int dWidth = new Double(img.getWidth() * fWidth).intValue();
-        int dHeight = new Double(img.getHeight() * fHeight).intValue();
+        int dWidth = Double.valueOf(img.getWidth() * fWidth).intValue();
+        int dHeight = Double.valueOf(img.getHeight() * fHeight).intValue();
         BufferedImage scaledImage = null;
         if(img != null){
             scaledImage = new BufferedImage(dWidth, dHeight, img.getType());

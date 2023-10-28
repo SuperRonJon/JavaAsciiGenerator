@@ -36,6 +36,7 @@ public class Main {
         boolean invert = Boolean.parseBoolean(invertColorsString);
         String outFileName = new File(imageFileName).getName().replaceFirst("\\..*", ".txt");
         outFileName = outDirectory + outFileName;
+        scanner.close();
 
         createArtFromFile(imageFileName, outFileName, scaling, invert);
     }
