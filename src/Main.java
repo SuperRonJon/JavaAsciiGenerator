@@ -27,7 +27,7 @@ public class Main {
             generator.writeToFile(outputPath, parser.getInvert());
         }
         else {
-            System.out.print(generator.toString(true));
+            System.out.print(generator.toString(parser.getInvert()));
         }
     }
 }
