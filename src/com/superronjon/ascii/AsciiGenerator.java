@@ -8,8 +8,8 @@ import java.nio.charset.StandardCharsets;
 public class AsciiGenerator {
     private BufferedImage image;
     private double[][] brightnessValues;
-    private String[] asciiCharactersInverse = { " ", ".", ":", "-", "=", "+", "*", "#", "%", "@" };
-    private String[] asciiCharacters = { "@", "%", "#", "*", "+", "=", "-", ":", ".", " " };
+    private final String[] asciiCharactersInverse = { " ", ".", ":", "-", "=", "+", "*", "#", "%", "@" };
+    private final String[] asciiCharacters = { "@", "%", "#", "*", "+", "=", "-", ":", ".", " " };
 
     public AsciiGenerator(BufferedImage img) {
         this.image = img;
