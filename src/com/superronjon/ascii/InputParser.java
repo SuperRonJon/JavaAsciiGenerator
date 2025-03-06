@@ -9,6 +9,7 @@ public class InputParser {
     private String imageFilePath;
     private double scalingFactor;
     private boolean invert;
+    private boolean toFile;
 
     public InputParser(String[] args) {
         tokens = new ArrayList<>();
@@ -16,6 +17,7 @@ public class InputParser {
 
         scalingFactor = 1.0;
         invert = false;
+        toFile = false;
         settingsFromTokens();
     }
 
@@ -24,6 +26,8 @@ public class InputParser {
     public boolean getInvert() { return invert; }
 
     public String getImageFilePath() { return imageFilePath; }
+
+    public boolean getToFile() { return toFile; }
 
     private void settingsFromTokens() {
         if(tokens.isEmpty()) {
@@ -51,6 +55,9 @@ public class InputParser {
                             break;
                         case 's':
                             scalingFactorTokenIndex = i+1;
+                            break;
+                        case 'f':
+                            toFile = true;
                             break;
                     }
                 }

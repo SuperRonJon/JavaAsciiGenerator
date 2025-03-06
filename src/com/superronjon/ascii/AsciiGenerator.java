@@ -44,6 +44,20 @@ public class AsciiGenerator {
         writer.close();
     }
 
+    public String toString(boolean invert) {
+        StringBuilder builder = new StringBuilder();
+        for(int i = 0; i < brightnessValues.length; i++) {
+            for(int j = 0; j < brightnessValues[i].length; j++) {
+                int charIndex = (int) Math.floor(brightnessValues[i][j] / (255.1 / asciiCharacters.length));
+
+                String brightnessChar = invert ? asciiCharactersInverse[charIndex] : asciiCharacters[charIndex];
+                builder.append(brightnessChar);
+            }
+            builder.append("\r\n");
+        }
+        return builder.toString();
+    }
+
     private void setBrightnessValues() {
         brightnessValues = new double[image.getHeight()][image.getWidth()];
         for(int i = 0; i < image.getHeight() - 1; i++) {

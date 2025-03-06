@@ -12,7 +12,6 @@ public class Main {
         InputParser parser = new InputParser(args);
 
         File inputFile = new File(parser.getImageFilePath());
-        String outputPath = inputFile.getAbsolutePath() + ".txt";
 
         BufferedImage image;
         try {
@@ -23,6 +22,12 @@ public class Main {
         }
 
         AsciiGenerator generator = new AsciiGenerator(image, parser.getScalingFactor());
-        generator.writeToFile(outputPath, parser.getInvert());
+        if(parser.getToFile()) {
+            String outputPath = inputFile.getAbsolutePath() + ".txt";
+            generator.writeToFile(outputPath, parser.getInvert());
+        }
+        else {
+            System.out.print(generator.toString(true));
+        }
     }
 }
