@@ -69,15 +69,4 @@ public class InputParser {
         }
         imageFilePath = tokens.get(tokens.size() - 1);
     }
-
-    private List<Character> split(String options) {
-        if(options.length() == 1) {
-            return new ArrayList<>(options.charAt(0));
-        }
-        List<Character> characters = new ArrayList<>();
-        for(int i = 0; i < options.length(); i++) {
-            characters.add(options.charAt(i));
-        }
-        return characters;
-    }
 }
