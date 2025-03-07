@@ -7,3 +7,6 @@ Run jar from command line
 -s val = scaling factor, scales the image by val before converting to ascii. Important for high resolution images.
 
 -f = outputs to a file instead of to the console. Output filename will be image.png.txt (image.png is whatever original image was named)
+
+
+![WindowsTerminal_oaIjW7fMUd](https://github.com/user-attachments/assets/7b8bb38a-e663-43d6-9183-f80794eac211)
