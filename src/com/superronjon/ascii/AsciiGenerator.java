@@ -4,20 +4,24 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class AsciiGenerator {
     private BufferedImage image;
     private double[][] brightnessValues;
-    private final String[] asciiCharactersInverse = { " ", ".", ":", "-", "=", "+", "*", "#", "%", "@" };
     private final String[] asciiCharacters = { "@", "%", "#", "*", "+", "=", "-", ":", ".", " " };
+    private final String[] asciiCharactersInverse = asciiCharacters.clone();
 
     public AsciiGenerator(BufferedImage img) {
         this.image = img;
+        Collections.reverse(Arrays.asList(asciiCharactersInverse));
         setBrightnessValues();
     }
 
     public AsciiGenerator(BufferedImage img, double scaling) {
         this.image = img;
+        Collections.reverse(Arrays.asList(asciiCharactersInverse));
         scaleImage(scaling, scaling);
         setBrightnessValues();
     }
