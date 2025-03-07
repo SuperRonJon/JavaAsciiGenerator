@@ -10,6 +10,7 @@ public class InputParser {
     private double scalingFactor;
     private boolean invert;
     private boolean toFile;
+    private boolean removeBorder;
 
     public InputParser(String[] args) {
         tokens = new ArrayList<>();
@@ -18,6 +19,7 @@ public class InputParser {
         scalingFactor = 1.0;
         invert = false;
         toFile = false;
+        removeBorder = false;
         settingsFromTokens();
     }
 
@@ -28,6 +30,8 @@ public class InputParser {
     public String getImageFilePath() { return imageFilePath; }
 
     public boolean getToFile() { return toFile; }
+
+    public boolean getRemoveBorder() { return removeBorder; }
 
     private void settingsFromTokens() {
         if(tokens.isEmpty()) {
@@ -57,6 +61,9 @@ public class InputParser {
                             break;
                         case 'f':
                             toFile = true;
+                            break;
+                        case 'b':
+                            removeBorder = true;
                             break;
                     }
                 }

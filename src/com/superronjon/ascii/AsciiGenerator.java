@@ -29,7 +29,16 @@ public class AsciiGenerator {
         setBrightnessValues();
     }
 
+    public void writeToFile(String outFileName) {
+        writeToFile(outFileName, false);
+    }
+
     public void writeToFile(String outFileName, boolean invert) {
+        writeToFile(outFileName, invert, false);
+    }
+
+    public void writeToFile(String outFileName, boolean invert, boolean removeBorder) {
+
         new File(outFileName).getParentFile().mkdirs();
         PrintWriter writer;
         try {
@@ -37,28 +46,33 @@ public class AsciiGenerator {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        for(int i = 0; i < brightnessValues.length; i++) {
-            for(int j = 0; j < brightnessValues[i].length; j++) {
-                int charIndex = (int) Math.floor(brightnessValues[i][j] / (255.1 / asciiCharacters.length));
-
-                String brightnessChar = "";
-                brightnessChar = invert ? asciiCharactersInverse[charIndex] : asciiCharacters[charIndex];
-                writer.write(brightnessChar);
-            }
-            writer.write("\r\n");
-        }
+        writer.write(toString(invert, removeBorder));
         writer.close();
     }
 
+    public String toString() {
+        return toString(false);
+    }
+
     public String toString(boolean invert) {
+        return toString(invert, false);
+    }
+
+    public String toString(boolean invert, boolean removeBorder) {
         StringBuilder builder = new StringBuilder();
         for(int i = 0; i < brightnessValues.length; i++) {
             for(int j = 0; j < brightnessValues[i].length; j++) {
                 int charIndex = (int) Math.floor(brightnessValues[i][j] / (255.1 / asciiCharacters.length));
 
                 String brightnessChar = invert ? asciiCharactersInverse[charIndex] : asciiCharacters[charIndex];
-                builder.append(brightnessChar);
+                if(removeBorder && (i == brightnessValues.length - 1 || j == brightnessValues[i].length - 1)) {
+                    if(!brightnessChar.equals("@")) {
+                        builder.append(brightnessChar);
+                    }
+                }
+                else {
+                    builder.append(brightnessChar);
+                }
             }
             builder.append("\r\n");
         }

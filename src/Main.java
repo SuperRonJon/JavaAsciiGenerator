@@ -24,10 +24,10 @@ public class Main {
         AsciiGenerator generator = new AsciiGenerator(image, parser.getScalingFactor());
         if(parser.getToFile()) {
             String outputPath = inputFile.getAbsolutePath() + ".txt";
-            generator.writeToFile(outputPath, parser.getInvert());
+            generator.writeToFile(outputPath, parser.getInvert(), parser.getRemoveBorder());
         }
         else {
-            System.out.print(generator.toString(parser.getInvert()));
+            System.out.print(generator.toString(parser.getInvert(), parser.getRemoveBorder()));
         }
     }
 }
