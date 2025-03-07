@@ -47,7 +47,6 @@ public class InputParser {
         for(int i = 0; i < tokens.size(); i++) {
             if(tokens.get(i).startsWith("-")) {
                 String options = tokens.get(i).substring(1);
-                List<Character> splitOptions = split(options);
                 for(int j = 0; j < options.length(); j++) {
                     switch(options.charAt(j)) {
                         case 'i':
