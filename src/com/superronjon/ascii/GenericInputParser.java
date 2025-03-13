@@ -8,9 +8,9 @@ import java.util.Map;
 
 public class GenericInputParser
 {
-	private List<String> tokens;
-	private List<Option> expectedOptions;
-	private List<String> dangling;
+	private final List<String> tokens;
+	private final List<Option> expectedOptions;
+	private final List<String> dangling;
 
 	public GenericInputParser() {
 		tokens = new ArrayList<>();
@@ -21,7 +21,7 @@ public class GenericInputParser
 	public void parseInput(String[] args) {
 		tokens.addAll(Arrays.asList(args));
 
-		Map<Character, Integer> indecies = new HashMap<>();
+		Map<Character, Integer> indices = new HashMap<>();
 		for(int i = 0; i < tokens.size(); i++) {
 			String token = tokens.get(i);
 			if(token.startsWith("-")) {
@@ -31,7 +31,7 @@ public class GenericInputParser
 					Option currentOption = getOptionWithFlag(options.charAt(j));
 					if(currentOption != null) {
 						if(currentOption.getTakesArgument()) {
-							indecies.put(currentOption.getFlag(), i + plusIndex);
+							indices.put(currentOption.getFlag(), i + plusIndex);
 							plusIndex++;
 						}
 						else {
@@ -41,7 +41,7 @@ public class GenericInputParser
 				}
 			}
 			else {
-				Character flag = getFlagAtIndex(indecies, i);
+				Character flag = getFlagAtIndex(indices, i);
 				if(flag != null) {
 					Option currentOption = getOptionWithFlag(flag);
 					if(currentOption != null) {
@@ -68,8 +68,12 @@ public class GenericInputParser
 		return null;
 	}
 
-	public List<String> getOtherArguments() {
+	public List<String> getUnflaggedArguments() {
 		return dangling;
+	}
+
+	public String getUnflaggedArgument(int i) {
+		return dangling.get(i);
 	}
 
 	private Option getOptionWithFlag(char flag) {

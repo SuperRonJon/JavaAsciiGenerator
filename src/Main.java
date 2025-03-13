@@ -22,7 +22,7 @@ public class Main {
 		boolean toFile = Boolean.parseBoolean(parser.getOptionValue('f'));
 		double scalingFactor = Double.parseDouble(parser.getOptionValue('s'));
 
-		File inputFile = new File(parser.getOtherArguments().get(0));
+		File inputFile = new File(parser.getUnflaggedArgument(0));
 
         BufferedImage image;
         try {
