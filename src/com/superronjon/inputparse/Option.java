@@ -1,4 +1,4 @@
-package com.superronjon.ascii;
+package com.superronjon.inputparse;
 
 public class Option {
 	private final char flag;

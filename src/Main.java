@@ -1,7 +1,7 @@
 import com.superronjon.ascii.AsciiGenerator;
-import com.superronjon.ascii.GenericInputParser;
+import com.superronjon.inputparse.GenericInputParser;
+import com.superronjon.inputparse.Option;
 
-import com.superronjon.ascii.Option;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -41,4 +41,6 @@ public class Main {
             System.out.print(generator.toString(invert, removeBorder));
         }
     }
+
+
 }

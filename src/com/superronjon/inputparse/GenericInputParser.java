@@ -1,4 +1,4 @@
-package com.superronjon.ascii;
+package com.superronjon.inputparse;
 
 import java.util.ArrayList;
 import java.util.Arrays;
