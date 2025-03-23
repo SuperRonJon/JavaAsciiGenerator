@@ -15,12 +15,19 @@ public class Main {
 		parser.addOption(new Option('b'));
 		parser.addOption(new Option('f'));
 		parser.addOption(new Option('s', true, "1.0"));
+		parser.addOption(new Option('w', true, "-1.0"));
+		parser.addOption(new Option('h', true, "-1.0"));
 		parser.parseInput(args);
 
 		boolean invert = Boolean.parseBoolean(parser.getOptionValue('i'));
 		boolean removeBorder = Boolean.parseBoolean(parser.getOptionValue('b'));
 		boolean toFile = Boolean.parseBoolean(parser.getOptionValue('f'));
 		double scalingFactor = Double.parseDouble(parser.getOptionValue('s'));
+		double heightScaling = Double.parseDouble(parser.getOptionValue('h'));
+		double widthScaling = Double.parseDouble(parser.getOptionValue('w'));
+
+		boolean widthGiven = heightScaling > 0;
+		boolean heightGiven = widthScaling > 0;
 
 		File inputFile = new File(parser.getUnflaggedArgument(0));
 
@@ -32,7 +39,19 @@ public class Main {
             return;
         }
 
-        AsciiGenerator generator = new AsciiGenerator(image, scalingFactor);
+		AsciiGenerator generator = null;
+		if(!widthGiven && !heightGiven) {
+			generator = new AsciiGenerator(image, scalingFactor);
+		}
+		else if(widthScaling > 0 && heightScaling > 0) {
+			generator = new AsciiGenerator(image, widthScaling, heightScaling);
+		}
+		else {
+			System.out.println("Invalid scaling parameters. \nIf not using equivalent scaling for the height and width (s)," +
+				"\nboth height (h) and width (w) parameters must be supplied and be greater than 0.");
+			return;
+		}
+
         if(toFile) {
             String outputPath = inputFile.getAbsolutePath() + ".txt";
             generator.writeToFile(outputPath, invert, removeBorder);

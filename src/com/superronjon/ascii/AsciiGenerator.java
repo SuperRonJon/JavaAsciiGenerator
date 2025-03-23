@@ -17,17 +17,21 @@ public class AsciiGenerator {
     private final String[] asciiCharactersInverse = asciiCharacters.clone();
 
     public AsciiGenerator(BufferedImage img) {
-        this.image = img;
-        Collections.reverse(Arrays.asList(asciiCharactersInverse));
-        setBrightnessValues();
+		this(img, 1.0);
     }
 
     public AsciiGenerator(BufferedImage img, double scaling) {
-        this.image = img;
-        Collections.reverse(Arrays.asList(asciiCharactersInverse));
-        scaleImage(scaling, scaling);
-        setBrightnessValues();
+		this(img, scaling, scaling);
     }
+
+	public AsciiGenerator(BufferedImage img, double scalingWidth, double scalingHeight) {
+		this.image = img;
+		Collections.reverse(Arrays.asList(asciiCharactersInverse));
+		if(scalingWidth != 1.0 || scalingHeight != 1.0) {
+			scaleImage(scalingWidth, scalingHeight);
+		}
+		setBrightnessValues();
+	}
 
     public void writeToFile(String outFileName) {
         writeToFile(outFileName, false);
