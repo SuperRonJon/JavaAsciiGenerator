@@ -29,6 +29,11 @@ public class Main {
 		boolean widthGiven = heightScaling > 0;
 		boolean heightGiven = widthScaling > 0;
 
+		String inputFileName = parser.getUnflaggedArgument(0);
+		if(inputFileName == null) {
+			System.out.println("No input file given");
+			return;
+		}
 		File inputFile = new File(parser.getUnflaggedArgument(0));
 
         BufferedImage image;
