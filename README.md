@@ -21,9 +21,7 @@ You can run the jar itself manually like this
 
 `java -jar ./path/to/ascii-generator.jar -is 0.3 ./path/to/image.png` which will scale image.png down to 30% original resolution and then output the text to the terminal. Scaling down images is important for high resolution images to be properly viewed in the terimanl or text editor.
 
-New releases comes with zip file that also includes .bat and .sh scripts to easier run the jar as its own command from the command line, instructions below if needed.
-
-Generally, just unzip the jar and .bat/.sh file (windows/linux+mac respectively) to a folder on the PATH and run ascii-generator via the script from the command line.
+New releases comes with zip file that also includes .bat and .sh scripts to easier run the jar as its own command from the command line from anywhere, like this `ascii-generator -is 0.3 ./path/to/image.png`. Instructions for this are below if needed. However generally, just unzip the jar and .bat/.sh file (windows/linux+mac respectively) to a folder on the PATH and run ascii-generator via the script from the command line.
 
 Requires Java JRE 17+
 
@@ -31,6 +29,7 @@ Requires Java JRE 17+
 
 - unzip contents (jar and .bat/.sh file, .bat is for windows) to your home bin folder, `~/bin`, create one if needed. (`C:\Users\<your-user-name>\bin`)
 - add that bin folder (`C:\Users\<your-user-name>\bin`) to your PATH. (On windows search->Edit environment variables for your account->User variables -> Path -> Edit... -> New -> `%USERPROFILE%\bin\`)
+- On linux you can just put the .sh and .jar files in `/usr/local/bin/` or some other location on your PATH and remove the .sh (`sudo mv ./path/to/ascii-generator.sh /usr/local/bin/ascii-generator`) and make it executable (`sudo chmod +x /usr/local/bin/ascii-generator`)
 - Now restart terminal and command should run with `ascii-generator -is 0.2 /path/to/image.png` from anywhere in the terminal.
 
 
