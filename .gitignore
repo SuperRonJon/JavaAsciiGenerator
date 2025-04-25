@@ -3,3 +3,6 @@ target/
 .vscode/
 *.jpg*
 *.png*
+.idea/material_theme_project_new.xml
+.idea/uiDesigner.xml
+.idea/misc.xml
