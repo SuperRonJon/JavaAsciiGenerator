@@ -78,7 +78,7 @@ public class AsciiGenerator {
                     builder.append(brightnessChar);
                 }
             }
-            builder.append("\r\n");
+            builder.append("\n");
         }
         return builder.toString();
     }
