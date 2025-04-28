@@ -15,6 +15,18 @@
 
 # Installation/Instructions
 
+## Install script
+
+Run the following install script in Git Bash on Windows or linux terminal and it will install ascii-generator to your ~/bin folder. Ensure that your home's bin folder (`~/bin` or `/home/<username>/bin`) is on your path (Step 2 in Command Line Installation Instructions below), and the `ascii-generator` command should work.
+
+```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/SuperRonJon/Ascii-Generator/master/download-ascii-generator.sh)"
+```
+
+Requires Java JRE 17+ to be installed to run after installation.
+
+## Manual Installation
+
 Download zip from [latest release here](https://github.com/SuperRonJon/Ascii-Generator/releases/).
 
 You can run the jar itself manually like this
