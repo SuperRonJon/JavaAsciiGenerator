@@ -19,6 +19,16 @@
 
 Run the following install script in Git Bash on Windows or linux terminal and it will install ascii-generator to your ~/bin folder. Ensure that your home's bin folder (`~/bin` or `/home/<username>/bin`) is on your path (Step 2 in Command Line Installation Instructions below), and the `ascii-generator` command should work.
 
+Install script requires curl and unzip to be installed to work. If needed run appropraite pre-requisite install command for your system.
+
+Debian/Ubuntu: `sudo apt install curl unzip` 
+
+Fedora/RHEL: `sudo dnf install curl unzip`
+
+Arch/Msys: `pacman -S --needed curl unzip`
+
+Then run install script
+
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/SuperRonJon/Ascii-Generator/master/download-ascii-generator.sh)"
 ```
