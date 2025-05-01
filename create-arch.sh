@@ -16,5 +16,5 @@ fpm -s dir -t pacman -p ascii-generator-2.5.0-any.pkg.tar.zst \
         ascii-generator=/usr/bin/ascii-generator ascii-generator.jar=/usr/lib/ascii-generator/ascii-generator.jar
 cd ..
 mkdir -p out/
-cp target/ascii-generator-2.5.0-any.rpm out/ascii-generator-any.rpm
-echo "Created rpm at out/ascii-generator-any.rpm!"
+cp target/ascii-generator-2.5.0-any.pkg.tar.zst out/ascii-generator-any.pkg.tar.zst
+echo "Created pacman packages at out/ascii-generator-any.pkg.tar.zst!"
