@@ -48,7 +48,7 @@ Arch/Msys: `pacman -S --needed curl unzip`
 Then run install script
 
 ```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/SuperRonJon/Ascii-Generator/master/download-ascii-generator.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/SuperRonJon/Ascii-Generator/master/scripts/download-ascii-generator.sh)"
 ```
 
 Requires Java JRE 17+ to be installed to run after installation.
