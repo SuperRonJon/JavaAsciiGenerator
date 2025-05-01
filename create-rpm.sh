@@ -9,7 +9,7 @@ cp ../installation-wrapper.sh ./ascii-generator
 fpm -s dir -t rpm -p ascii-generator-2.5.0-any.rpm \
         --name ascii-generator \
         --version 2.5.0 --architecture all \
-        --depends bash --depends openjdk-17-jre \
+        --depends bash --depends java-21-openjdk-headless \
         --description "Generates ascii art from image files" \
         --url "https://github.com/SuperRonJon/Ascii-Generator" \
         ascii-generator=/usr/bin/ascii-generator ascii-generator.jar=/usr/lib/ascii-generator/ascii-generator.jar
