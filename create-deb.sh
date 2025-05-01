@@ -1,4 +1,5 @@
-rm -rf target/
+rm -f target/InputParser.jar target/ascii-generator
+rm -rf target/com/superronjon/inputparse
 mkdir target/
 javac -cp lib/InputParser.jar -d target/ src/Main.java src/com/superronjon/ascii/AsciiGenerator.java
 cd target/
