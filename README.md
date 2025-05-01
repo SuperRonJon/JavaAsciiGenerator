@@ -15,7 +15,7 @@
 
 # Installation/Instructions
 
-## Packages
+## Linux Packages
 
 Packages are available for .deb and .rpm based package managers.
 
