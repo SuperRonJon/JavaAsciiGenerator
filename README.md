@@ -15,6 +15,24 @@
 
 # Installation/Instructions
 
+## Packages
+
+Packages are available for .deb and .rpm based package managers.
+
+Debian/Ubuntu/.deb based [download here.](https://github.com/SuperRonJon/Ascii-Generator/releases/latest/download/ascii-generator-any.deb) or run the following commands...
+
+```sh
+curl -LO https://github.com/SuperRonJon/Ascii-Generator/releases/latest/download/ascii-generator-any.deb
+sudo apt install ./ascii-generator-any.deb
+```
+
+Fedora/CentOS/RHEL/.rpm based [download here.](https://github.com/SuperRonJon/Ascii-Generator/releases/latest/download/ascii-generator-any.rpm) or run the following commands...
+
+```sh
+curl -LO https://github.com/SuperRonJon/Ascii-Generator/releases/latest/download/ascii-generator-any.rpm
+sudo dnf install ./ascii-generator-any.rpm
+```
+
 ## Install script
 
 Run the following install script in Git Bash on Windows or linux terminal and it will install ascii-generator to your ~/bin folder. Ensure that your home's bin folder (`~/bin` or `/home/<username>/bin`) is on your path (Step 2 in Command Line Installation Instructions below), and the `ascii-generator` command should work.
