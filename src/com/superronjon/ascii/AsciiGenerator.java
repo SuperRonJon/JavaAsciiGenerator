@@ -45,9 +45,7 @@ public class AsciiGenerator {
 
 		File outFile = new File(outFileName);
 		if(outFile.getParentFile() != null) {
-			if(!outFile.getParentFile().mkdirs()) {
-				return;
-			}
+			outFile.getParentFile().mkdirs();
 		}
         PrintWriter writer;
         try {
