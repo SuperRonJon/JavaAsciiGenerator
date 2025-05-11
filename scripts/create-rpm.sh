@@ -13,7 +13,7 @@ jar -cfe ascii-generator.jar Main Main.class com/superronjon/ascii/AsciiGenerato
 cp ../scripts/installation-wrapper.sh ./ascii-generator
 fpm -s dir -t rpm -p ascii-generator-any.rpm \
         --name ascii-generator \
-        --version 2.5.0 --architecture all \
+        --version 2.6.0 --architecture all \
         --depends bash --depends java-21-openjdk-headless \
         --description "Generates ascii art from image files" \
         --url "https://github.com/SuperRonJon/Ascii-Generator" \
