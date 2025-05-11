@@ -51,7 +51,7 @@ Then run install script
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/SuperRonJon/Ascii-Generator/master/scripts/download-ascii-generator.sh)"
 ```
 
-Requires Java JRE 17+ to be installed to run after installation.
+Requires Java JRE 8+ to be installed to run after installation.
 
 ## Manual Installation
 
