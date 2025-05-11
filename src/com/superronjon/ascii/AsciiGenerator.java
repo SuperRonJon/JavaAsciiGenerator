@@ -46,7 +46,7 @@ public class AsciiGenerator {
         new File(outFileName).getParentFile().mkdirs();
         PrintWriter writer;
         try {
-            writer = new PrintWriter(outFileName, StandardCharsets.UTF_8);
+			writer = new PrintWriter(outFileName, "UTF-8");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
