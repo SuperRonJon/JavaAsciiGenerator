@@ -1,6 +1,5 @@
 import com.superronjon.ascii.AsciiGenerator;
 import com.superronjon.inputparse.GenericInputParser;
-import com.superronjon.inputparse.Option;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -10,21 +9,35 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args){
+		final String CURRENT_VERSION = "v2.6";
+
 		GenericInputParser parser = new GenericInputParser();
-		parser.addOption(new Option('i'));
-		parser.addOption(new Option('b'));
-		parser.addOption(new Option('f'));
-		parser.addOption(new Option('s', true, "1.0"));
-		parser.addOption(new Option('w', true, "-1.0"));
-		parser.addOption(new Option('h', true, "-1.0"));
+		parser.addOption('i', "invert");
+		parser.addOption('b', "remove-border");
+		parser.addOption('f', "to-file", true, "");
+		parser.addOption('s', "scaling", true, "1.0");
+		parser.addOption('w', "width", true, "-1.0");
+		parser.addOption('h', "height", true, "-1.0");
+		parser.addOption('v', "version");
+
 		parser.parseInput(args);
+
+		if(parser.getOptionValue("version").equals("True")) {
+			System.out.println("ascii-generator " + CURRENT_VERSION);
+			return;
+		}
 
 		boolean invert = Boolean.parseBoolean(parser.getOptionValue('i'));
 		boolean removeBorder = Boolean.parseBoolean(parser.getOptionValue('b'));
-		boolean toFile = Boolean.parseBoolean(parser.getOptionValue('f'));
 		double scalingFactor = Double.parseDouble(parser.getOptionValue('s'));
 		double heightScaling = Double.parseDouble(parser.getOptionValue('h'));
 		double widthScaling = Double.parseDouble(parser.getOptionValue('w'));
+
+		String outputFileName = parser.getOptionValue("to-file");
+		boolean toFile = false;
+		if(!outputFileName.trim().isEmpty()) {
+			toFile = true;
+		}
 
 		boolean widthGiven = heightScaling > 0;
 		boolean heightGiven = widthScaling > 0;
@@ -58,8 +71,9 @@ public class Main {
 		}
 
         if(toFile) {
-            String outputPath = inputFile.getAbsolutePath() + ".txt";
-            generator.writeToFile(outputPath, invert, removeBorder);
+			File outputFile = new File(outputFileName);
+			System.out.println("Writing to " + outputFile.getAbsolutePath());
+            generator.writeToFile(outputFileName, invert, removeBorder);
         }
         else {
             System.out.print(generator.toString(invert, removeBorder));

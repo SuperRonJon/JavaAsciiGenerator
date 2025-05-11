@@ -43,7 +43,12 @@ public class AsciiGenerator {
 
     public void writeToFile(String outFileName, boolean invert, boolean removeBorder) {
 
-        new File(outFileName).getParentFile().mkdirs();
+		File outFile = new File(outFileName);
+		if(outFile.getParentFile() != null) {
+			if(!outFile.getParentFile().mkdirs()) {
+				return;
+			}
+		}
         PrintWriter writer;
         try {
 			writer = new PrintWriter(outFileName, "UTF-8");
