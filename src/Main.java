@@ -1,5 +1,6 @@
 import com.superronjon.ascii.AsciiGenerator;
 import com.superronjon.inputparse.GenericInputParser;
+import com.superronjon.inputparse.UnrecognizedOptionException;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -9,7 +10,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args){
-		final String CURRENT_VERSION = "v2.6";
+		final String CURRENT_VERSION = "v2.7";
 
 		GenericInputParser parser = new GenericInputParser();
 		parser.addOption('i', "invert");
@@ -20,7 +21,13 @@ public class Main {
 		parser.addOption('h', "height", true, "-1.0");
 		parser.addOption('v', "version");
 
-		parser.parseInput(args);
+		try {
+			parser.parseInput(args);
+		}
+		catch (UnrecognizedOptionException e) {
+			System.out.println(e.getMessage());
+			return;
+		}
 
 		if(parser.getOptionValue("version").equals("True")) {
 			System.out.println("ascii-generator " + CURRENT_VERSION);
