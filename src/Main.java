@@ -10,16 +10,9 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args){
-		final String CURRENT_VERSION = "v2.7";
+		final String CURRENT_VERSION = "v2.8";
 
-		GenericInputParser parser = new GenericInputParser();
-		parser.addOption('i', "invert");
-		parser.addOption('b', "remove-border");
-		parser.addOption('f', "to-file", true, "");
-		parser.addOption('s', "scaling", true, "1.0");
-		parser.addOption('w', "width", true, "-1.0");
-		parser.addOption('h', "height", true, "-1.0");
-		parser.addOption('v', "version");
+		GenericInputParser parser = createInputParser();
 
 		try {
 			parser.parseInput(args);
@@ -31,6 +24,11 @@ public class Main {
 
 		if(parser.getOptionValue("version").equals("True")) {
 			System.out.println("ascii-generator " + CURRENT_VERSION);
+			return;
+		}
+
+		if(parser.getOptionValue("help").equals("True")) {
+			parser.printHelp();
 			return;
 		}
 
@@ -86,6 +84,20 @@ public class Main {
             System.out.print(generator.toString(invert, removeBorder));
         }
     }
+
+	private static GenericInputParser createInputParser()
+	{
+		GenericInputParser parser = new GenericInputParser("ascii-generator", "ascii-generator [OPTIONS...] image/file/path.jpg");
+		parser.addOption('i', "invert", "Invert color so that the brightest pixels use the denses characters");
+		parser.addOption('b', "remove-border", "Removes border that sometimes appears on non-inverted images");
+		parser.addOption('f', "to-file", true, "", "Output to file, takes output filepath as VAL");
+		parser.addOption('s', "scaling", true, "1.0", "Used to scale the images height and width evenly by VAL");
+		parser.addOption('w', "width", true, "-1.0", "Used to scale the height separately from width. Both must be given");
+		parser.addOption('h', "height", true, "-1.0", "Used to scale the height separately from width. Both must be given");
+		parser.addOption('v', "version", "Print version number");
+		parser.addOption('H', "help", "Print help menu");
+		return parser;
+	}
 
 
 }

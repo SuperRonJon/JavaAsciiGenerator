@@ -12,7 +12,11 @@ mv ./ascii-generator.sh $HOME/bin/ascii-generator
 mv ./ascii-generator.jar $HOME/bin/ascii-generator.jar
 cd ..
 rm -rf tmp-ascii-download/
-PATH=$PATH:$HOME/bin
-echo '[[ ":$PATH:" == *:$HOME/bin:* ]] || PATH="$PATH:$HOME/bin"' >> ~/.bashrc
-source ~/.bashrc
-echo "Finished!"
+if [[ ":$PATH:" == *:$HOME/bin:* ]]; then
+  echo "Finished!"
+  echo 'run ascii-generator --help to get started'
+else
+  echo "Finished installing to $HOME/bin, but the folder is not on your path."
+  echo 'To add it, add "PATH=$PATH:$HOME/bin" to your .bashrc or .zshrc file.'
+  echo 'Then run ascii-generator --help to get started'
+fi
