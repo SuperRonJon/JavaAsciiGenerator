@@ -2,12 +2,11 @@
 SCRIPT_DIR=$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 VERSION=$1
 OUTPUT_DIR="releases/new-release"
-OUTPUT_NAME="new-release"
+OUTPUT_NAME="ascii-generator"
 if [ -z "${VERSION}" ]; then
   echo "No version specified, output to $OUTPUT_DIR"
 else
   OUTPUT_DIR="releases/ascii-generator_v$VERSION"
-  OUTPUT_NAME="ascii-generator"
   echo "output to $OUTPUT_DIR"
 fi
 cd $SCRIPT_DIR/../out
