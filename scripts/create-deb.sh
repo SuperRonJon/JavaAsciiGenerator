@@ -6,7 +6,7 @@ cd $SCRIPT_DIR/..
 #rm -f target/ascii-generator-any.deb
 rm -rf target
 mkdir -p target/
-javac -cp lib/InputParser.jar -d target/ src/Main.java src/com/superronjon/ascii/AsciiGenerator.java
+javac --release 8 -cp lib/InputParser.jar -d target/ src/Main.java src/com/superronjon/ascii/AsciiGenerator.java
 cd target/
 cp -u ../lib/InputParser.jar .
 unzip ./InputParser.jar
