@@ -1,10 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 SCRIPT_DIR=$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd $SCRIPT_DIR/..
-#rm -f target/InputParser.jar target/ascii-generator
-#rm -rf target/com/superronjon/inputparse
-#rm -f target/ascii-generator-any.rpm
-rm -rf target
+rm -rf target/*
 mkdir -p target/
 javac --release 8 -cp lib/InputParser.jar -d target/ src/Main.java src/com/superronjon/ascii/AsciiGenerator.java
 cd target/
