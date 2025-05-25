@@ -1,17 +1,20 @@
 # Commands
 
--i = invert colors, brightest colored pixels have the densest characters rather than darkest
+-i, --invert = invert colors, brightest colored pixels have the densest characters rather than darkest
 
--s val = scaling factor, scales the image's height and width by val before converting to ascii. Important for high resolution images.
+-s, --scaling VAL = scaling factor, scales the image's height and width by val before converting to ascii. Important for high resolution images.
 
--f = outputs to a file instead of to the console. Output filename will be image.png.txt (image.png is whatever original image was named)
+-f, --to-file = outputs to a file instead of to the console. Output filename will be image.png.txt (image.png is whatever original image was named)
 
--b = removes bottom right border that sometimes occurs on certain image outputs. You'll know if you need it.
+-b, --remove-border = removes bottom right border that sometimes occurs on certain image outputs. You'll know if you need it.
 
--h val = scaling factor for height individually. If specified width must also be specified and both must be greater than 0.
+-h, --height VAL = scaling factor for height individually. If specified width must also be specified and both must be greater than 0.
 
--w val = scaling factor for width individually. If specified height must also be specified and both must be greater than 0.
+-w, --width VAL = scaling factor for width individually. If specified height must also be specified and both must be greater than 0.
 
+--version = Prints version number
+
+--help = Prints help menu
 
 # Installation/Instructions
 
@@ -63,7 +66,7 @@ You can run the jar itself manually like this
 
 New releases comes with zip file that also includes .bat and .sh scripts to easier run the jar as its own command from the command line from anywhere, like this `ascii-generator -is 0.3 ./path/to/image.png`. Instructions for this are below if needed. However generally, just unzip the jar and .bat/.sh file (windows/linux+mac respectively) to a folder on the PATH and run ascii-generator via the script from the command line.
 
-Requires Java JRE 17+
+Requires Java JRE 8+
 
 ## Command Line Installation Instructions
 
