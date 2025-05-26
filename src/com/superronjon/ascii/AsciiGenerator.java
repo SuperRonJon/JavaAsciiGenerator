@@ -6,42 +6,22 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
 
 public class AsciiGenerator {
-    private BufferedImage image;
-    private double[][] brightnessValues;
     private final String[] asciiCharacters = { "@", "%", "#", "*", "+", "=", "-", ":", ".", " " };
     private final String[] asciiCharactersInverse = asciiCharacters.clone();
 
-    public AsciiGenerator(BufferedImage img) {
-		this(img, 1.0);
+    public AsciiGenerator() {
+        Collections.reverse(Arrays.asList(asciiCharactersInverse));
     }
 
-    public AsciiGenerator(BufferedImage img, double scaling) {
-		this(img, scaling, scaling);
+    public void writeImageToFile(BufferedImage img, String outFileName, double scaling, boolean invert, boolean removeBorder) {
+        writeImageToFile(img, outFileName, scaling, scaling, invert, removeBorder);
     }
 
-	public AsciiGenerator(BufferedImage img, double scalingWidth, double scalingHeight) {
-		this.image = img;
-		Collections.reverse(Arrays.asList(asciiCharactersInverse));
-		if(scalingWidth != 1.0 || scalingHeight != 1.0) {
-			scaleImage(scalingWidth, scalingHeight);
-		}
-		setBrightnessValues();
-	}
-
-    public void writeToFile(String outFileName) {
-        writeToFile(outFileName, false);
-    }
-
-    public void writeToFile(String outFileName, boolean invert) {
-        writeToFile(outFileName, invert, false);
-    }
-
-    public void writeToFile(String outFileName, boolean invert, boolean removeBorder) {
+    public void writeImageToFile(BufferedImage img, String outFileName, double scalingWidth, double scalingHeight, boolean invert, boolean removeBorder) {
 
 		File outFile = new File(outFileName);
 		if(outFile.getParentFile() != null) {
@@ -53,19 +33,17 @@ public class AsciiGenerator {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        writer.write(toString(invert, removeBorder));
+        writer.write(imageToString(img, scalingWidth, scalingHeight, invert, removeBorder));
         writer.close();
     }
 
-    public String toString() {
-        return toString(false);
+    public String imageToString(BufferedImage img, double scaling, boolean invert, boolean removeBorder) {
+        return imageToString(img, scaling, scaling, invert, removeBorder);
     }
 
-    public String toString(boolean invert) {
-        return toString(invert, false);
-    }
-
-    public String toString(boolean invert, boolean removeBorder) {
+    public String imageToString(BufferedImage img, double scalingWidth, double scalingHeight, boolean invert, boolean removeBorder) {
+        BufferedImage scaledImage = scaleImage(img, scalingWidth, scalingHeight);
+        double[][] brightnessValues = getBrightnessValues(scaledImage);
         StringBuilder builder = new StringBuilder();
         for(int i = 0; i < brightnessValues.length; i++) {
             for(int j = 0; j < brightnessValues[i].length; j++) {
@@ -86,13 +64,14 @@ public class AsciiGenerator {
         return builder.toString();
     }
 
-    private void setBrightnessValues() {
-        brightnessValues = new double[image.getHeight()][image.getWidth()];
+    private double[][] getBrightnessValues(BufferedImage image) {
+        double[][] brightnessValues = new double[image.getHeight()][image.getWidth()];
         for(int i = 0; i < image.getHeight() - 1; i++) {
             for(int j = 0; j < image.getWidth() - 1; j++) {
                 brightnessValues[i][j] = getBrightnessValue(new Color(image.getRGB(j, i)));
             }
         }
+        return brightnessValues;
     }
 
     private double getBrightnessValue(Color c) {
@@ -103,16 +82,15 @@ public class AsciiGenerator {
         return Math.sqrt((pr * Math.pow(c.getRed(), 2)) + (pg * Math.pow(c.getGreen(), 2)) + (pb * Math.pow(c.getBlue(), 2)));
     }
 
-    private void scaleImage(double fWidth, double fHeight) {
+    private BufferedImage scaleImage(BufferedImage image, double fWidth, double fHeight) {
         int dWidth = Double.valueOf(image.getWidth() * fWidth).intValue();
         int dHeight = Double.valueOf(image.getHeight() * fHeight).intValue();
-        BufferedImage scaledImage = null;
-        if(image != null) {
-            scaledImage = new BufferedImage(dWidth, dHeight, image.getType());
-            Graphics2D graphics2D = scaledImage.createGraphics();
-            graphics2D.drawImage(image, 0, 0, dWidth, dHeight, null);
-            graphics2D.dispose();
-        }
-        image = scaledImage;
+
+        BufferedImage scaledImage = new BufferedImage(dWidth, dHeight, image.getType());
+        Graphics2D graphics2D = scaledImage.createGraphics();
+        graphics2D.drawImage(image, 0, 0, dWidth, dHeight, null);
+        graphics2D.dispose();
+
+        return scaledImage;
     }
 }

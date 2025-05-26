@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args){
-		final String CURRENT_VERSION = "v2.8";
+		final String CURRENT_VERSION = "v2.9";
 
 		GenericInputParser parser = createInputParser();
 
@@ -32,11 +32,25 @@ public class Main {
 			return;
 		}
 
-		boolean invert = Boolean.parseBoolean(parser.getOptionValue('i'));
-		boolean removeBorder = Boolean.parseBoolean(parser.getOptionValue('b'));
-		double scalingFactor = Double.parseDouble(parser.getOptionValue('s'));
-		double heightScaling = Double.parseDouble(parser.getOptionValue('h'));
-		double widthScaling = Double.parseDouble(parser.getOptionValue('w'));
+		boolean invert;
+		boolean removeBorder;
+		double scalingFactor;
+		double heightScaling;
+		double widthScaling;
+
+		try{
+			invert = Boolean.parseBoolean(parser.getOptionValue('i'));
+			removeBorder = Boolean.parseBoolean(parser.getOptionValue('b'));
+			scalingFactor = Double.parseDouble(parser.getOptionValue('s'));
+			heightScaling = Double.parseDouble(parser.getOptionValue('h'));
+			widthScaling = Double.parseDouble(parser.getOptionValue('w'));
+		} catch (Exception e) {
+			System.out.println("Error parsing input arguments...");
+			System.out.println(e.getMessage());
+			System.out.println("Ensure argument is expected type.");
+			return;
+		}
+
 
 		String outputFileName = parser.getOptionValue("to-file");
 		boolean toFile = false;
@@ -62,26 +76,34 @@ public class Main {
             return;
         }
 
-		AsciiGenerator generator = null;
+		AsciiGenerator generator = new AsciiGenerator();
+		boolean evenScaling = false;
 		if(!widthGiven && !heightGiven) {
-			generator = new AsciiGenerator(image, scalingFactor);
+			evenScaling = true;
 		}
-		else if(widthScaling > 0 && heightScaling > 0) {
-			generator = new AsciiGenerator(image, widthScaling, heightScaling);
-		}
-		else {
+		else if(widthScaling <= 0 || heightScaling <= 0) {
 			System.out.println("Invalid scaling parameters. \nIf not using equivalent scaling for the height and width (s)," +
-				"\nboth height (h) and width (w) parameters must be supplied and be greater than 0.");
+					"\nboth height (h) and width (w) parameters must be supplied and be greater than 0.");
 			return;
 		}
 
         if(toFile) {
 			File outputFile = new File(outputFileName);
 			System.out.println("Writing to " + outputFile.getAbsolutePath());
-            generator.writeToFile(outputFileName, invert, removeBorder);
+			if(evenScaling) {
+				generator.writeImageToFile(image, outputFileName, scalingFactor, invert, removeBorder);
+			}
+			else {
+				generator.writeImageToFile(image, outputFileName, widthScaling, heightScaling, invert, removeBorder);
+			}
         }
         else {
-            System.out.print(generator.toString(invert, removeBorder));
+			if(evenScaling) {
+				System.out.print(generator.imageToString(image, scalingFactor, invert, removeBorder));
+			}
+			else {
+				System.out.print(generator.imageToString(image, widthScaling, heightScaling, invert, removeBorder));
+			}
         }
     }
 
