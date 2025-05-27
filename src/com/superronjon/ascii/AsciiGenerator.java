@@ -23,13 +23,13 @@ public class AsciiGenerator {
 
     public void writeImageToFile(BufferedImage img, String outFileName, double scalingWidth, double scalingHeight, boolean invert, boolean removeBorder) {
 
-		File outFile = new File(outFileName);
-		if(outFile.getParentFile() != null) {
-			outFile.getParentFile().mkdirs();
-		}
+        File outFile = new File(outFileName);
+        if(outFile.getParentFile() != null) {
+            outFile.getParentFile().mkdirs();
+        }
         PrintWriter writer;
         try {
-			writer = new PrintWriter(outFileName, "UTF-8");
+            writer = new PrintWriter(outFileName, "UTF-8");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
