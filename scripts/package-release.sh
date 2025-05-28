@@ -16,3 +16,4 @@ cp ../ascii-generator.sh $OUTPUT_DIR/ascii-generator.sh
 cp ../ascii-generator.bat $OUTPUT_DIR/ascii-generator.bat
 cd $OUTPUT_DIR
 tar -czvf $OUTPUT_NAME.tar.gz ./*
+zip ascii-generator.zip ascii-generator.jar ascii-generator.sh ascii-generator.bat
