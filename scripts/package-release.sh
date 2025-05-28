@@ -18,8 +18,8 @@ else
 fi
 mkdir -p $OUTPUT_DIR
 mv ascii-generator.jar $OUTPUT_DIR/ascii-generator.jar
-cp ../ascii-generator.sh $OUTPUT_DIR/ascii-generator.sh
-cp ../ascii-generator.bat $OUTPUT_DIR/ascii-generator.bat
+cp ../scripts/ascii-generator.sh $OUTPUT_DIR/ascii-generator.sh
+cp ../scripts/ascii-generator.bat $OUTPUT_DIR/ascii-generator.bat
 cd $OUTPUT_DIR
 tar -czvf $OUTPUT_NAME.tar.gz ./*
 zip ascii-generator.zip ascii-generator.jar ascii-generator.sh ascii-generator.bat
