@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args){
-        final String CURRENT_VERSION = "v2.9";
+        final String CURRENT_VERSION = "v2.10";
 
         GenericInputParser parser = createInputParser();
 
@@ -66,13 +66,22 @@ public class Main {
             System.out.println("No input file given");
             return;
         }
-        File inputFile = new File(parser.getUnflaggedArgument(0));
+        File inputFile = new File(inputFileName);
+
+        if(!inputFile.exists()) {
+            System.out.println("Input file \"" + inputFileName + "\" not found... Ensure the path is correct and the file exists.");
+            return;
+        }
 
         BufferedImage image;
         try {
             image = ImageIO.read(inputFile);
         } catch (IOException e) {
-            System.out.println("Unable to read input file");
+            image = null;
+        }
+
+        if(image == null) {
+            System.out.println("Error parsing input file to an image... Ensure the file is a valid image file format.");
             return;
         }
 
