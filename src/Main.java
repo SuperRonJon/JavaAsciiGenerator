@@ -53,10 +53,7 @@ public class Main {
 
 
         String outputFileName = parser.getOptionValue("to-file");
-        boolean toFile = false;
-        if(!outputFileName.trim().isEmpty()) {
-            toFile = true;
-        }
+        boolean toFile = !outputFileName.trim().isEmpty();
 
         boolean widthGiven = heightScaling > 0;
         boolean heightGiven = widthScaling > 0;
@@ -86,11 +83,8 @@ public class Main {
         }
 
         AsciiGenerator generator = new AsciiGenerator();
-        boolean evenScaling = false;
-        if(!widthGiven && !heightGiven) {
-            evenScaling = true;
-        }
-        else if(widthScaling <= 0 || heightScaling <= 0) {
+        boolean evenScaling = (!widthGiven && !heightGiven);
+        if(!evenScaling && (widthScaling <= 0 || heightScaling <= 0)) {
             System.out.println("Invalid scaling parameters. \nIf not using equivalent scaling for the height and width (s)," +
                     "\nboth height (h) and width (w) parameters must be supplied and be greater than 0.");
             return;
