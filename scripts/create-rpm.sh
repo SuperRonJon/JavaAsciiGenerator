@@ -14,7 +14,7 @@ fpm -s dir -t rpm -p ascii-generator-any.rpm \
         --version 2.9.1 --architecture all \
         --depends bash --depends java-21-openjdk-headless \
         --description "Generates ascii art from image files" \
-        --url "https://github.com/SuperRonJon/Ascii-Generator" \
+        --url "https://github.com/SuperRonJon/JavaAsciiGenerator" \
         ascii-generator=/usr/bin/ascii-generator ascii-generator.jar=/usr/lib/ascii-generator/ascii-generator.jar
 cd ..
 mkdir -p out/

@@ -22,17 +22,17 @@
 
 Packages are available for .deb and .rpm based package managers.
 
-Debian/Ubuntu/.deb based [download here.](https://github.com/SuperRonJon/Ascii-Generator/releases/latest/download/ascii-generator-any.deb) or run the following commands...
+Debian/Ubuntu/.deb based [download here.](https://github.com/SuperRonJon/JavaAsciiGenerator/releases/latest/download/ascii-generator-any.deb) or run the following commands...
 
 ```sh
-curl -LO https://github.com/SuperRonJon/Ascii-Generator/releases/latest/download/ascii-generator-any.deb
+curl -LO https://github.com/SuperRonJon/JavaAsciiGenerator/releases/latest/download/ascii-generator-any.deb
 sudo apt install ./ascii-generator-any.deb
 ```
 
-Fedora/CentOS/RHEL/.rpm based [download here.](https://github.com/SuperRonJon/Ascii-Generator/releases/latest/download/ascii-generator-any.rpm) or run the following commands...
+Fedora/CentOS/RHEL/.rpm based [download here.](https://github.com/SuperRonJon/JavaAsciiGenerator/releases/latest/download/ascii-generator-any.rpm) or run the following commands...
 
 ```sh
-curl -LO https://github.com/SuperRonJon/Ascii-Generator/releases/latest/download/ascii-generator-any.rpm
+curl -LO https://github.com/SuperRonJon/JavaAsciiGenerator/releases/latest/download/ascii-generator-any.rpm
 sudo dnf install ./ascii-generator-any.rpm
 ```
 
@@ -51,14 +51,14 @@ Arch/Msys: `pacman -S --needed curl unzip`
 Then run install script
 
 ```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/SuperRonJon/Ascii-Generator/master/scripts/download-ascii-generator.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/SuperRonJon/JavaAsciiGenerator/master/scripts/download-ascii-generator.sh)"
 ```
 
 Requires Java JRE 8+ to be installed to run after installation.
 
 ## Manual Installation
 
-Download zip from [latest release here](https://github.com/SuperRonJon/Ascii-Generator/releases/).
+Download zip from [latest release here](https://github.com/SuperRonJon/JavaAsciiGenerator/releases/).
 
 You can run the jar itself manually like this
 

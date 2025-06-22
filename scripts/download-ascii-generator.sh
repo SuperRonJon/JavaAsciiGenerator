@@ -3,7 +3,7 @@ echo "Creating temporary download directory..."
 mkdir ./tmp-ascii-download
 cd tmp-ascii-download/
 echo "Downloading latest release..."
-curl -LO https://github.com/SuperRonJon/Ascii-Generator/releases/latest/download/ascii-generator.zip
+curl -LO https://github.com/SuperRonJon/JavaAsciiGenerator/releases/latest/download/ascii-generator.zip
 echo "Extracting files..."
 unzip ./ascii-generator.zip
 chmod +x ./ascii-generator.sh
