@@ -14,7 +14,7 @@ fpm -s dir -t deb -p ascii-generator-any.deb \
 	--version 2.9.1 --architecture all \
 	--depends bash --depends openjdk-17-jre \
 	--description "Generates ascii art from image files" \
-	--url "https://github.com/SuperRonJon/Ascii-Generator" \
+	--url "https://github.com/SuperRonJon/JavaAsciiGenerator" \
 	ascii-generator=/usr/bin/ascii-generator ascii-generator.jar=/usr/lib/ascii-generator/ascii-generator.jar
 cd ..
 mkdir -p out/
