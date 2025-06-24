@@ -21,5 +21,5 @@ mv ascii-generator.jar $OUTPUT_DIR/ascii-generator.jar
 cp ../scripts/ascii-generator.sh $OUTPUT_DIR/ascii-generator.sh
 cp ../scripts/ascii-generator.bat $OUTPUT_DIR/ascii-generator.bat
 cd $OUTPUT_DIR
-tar -czvf $OUTPUT_NAME.tar.gz ./*
-zip ascii-generator.zip ascii-generator.jar ascii-generator.sh ascii-generator.bat
+command -v tar &>/dev/null && tar -czvf $OUTPUT_NAME.tar.gz ./*
+command -v zip &>/dev/null && zip ascii-generator.zip ascii-generator.jar ascii-generator.sh ascii-generator.bat
