@@ -112,7 +112,7 @@ public class Main {
 
     private static GenericInputParser createInputParser()
     {
-        GenericInputParser parser = new GenericInputParser("ascii-generator", "ascii-generator [OPTIONS...] image/file/path.jpg");
+        GenericInputParser parser = new GenericInputParser("Ascii Art Generator", "ascii-generator [OPTIONS...] image/file/path.jpg");
         parser.addOption('i', "invert", "Invert color so that the brightest pixels use the denses characters");
         parser.addOption('b', "remove-border", "Removes border that sometimes appears on non-inverted images");
         parser.addOption('f', "to-file", true, "", "Output to file, takes output filepath as VAL");
