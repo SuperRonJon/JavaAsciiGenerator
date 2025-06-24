@@ -1,20 +1,26 @@
 # Commands
 
--i, --invert = invert colors, brightest colored pixels have the densest characters rather than darkest
+```
+-> % ascii-generator --help
 
--s, --scaling VAL = scaling factor, scales the image's height and width by val before converting to ascii. Important for high resolution images.
+ascii-generator - Usage: ascii-generator [OPTIONS...] image/file/path.jpg
 
--f, --to-file = outputs to a file instead of to the console. Output filename will be image.png.txt (image.png is whatever original image was named)
+Available Options:
+    --invert, -i           Invert color so that the brightest pixels use the denses characters
+    --remove-border, -b    Removes border that sometimes appears on non-inverted images
+    --to-file, -f VAL      Output to file, takes output filepath as VAL
+    --scaling, -s VAL      Used to scale the images height and width evenly by VAL
+    --width, -w VAL        Used to scale the height separately from width. Both must be given
+    --height, -h VAL       Used to scale the height separately from width. Both must be given
+    --version, -v          Print version number
+    --help, -H             Print help menu
+```
 
--b, --remove-border = removes bottom right border that sometimes occurs on certain image outputs. You'll know if you need it.
+Scaling factor values are floating point values that indicate the amount to scale the original image by.
 
--h, --height VAL = scaling factor for height individually. If specified width must also be specified and both must be greater than 0.
+Ex. `ascii-generator --width 0.2 --height 0.1 image.png` will scale the ascii-art output's width down to 20% and height to 10% the original image.png's pixel resolution. This is equivalent to `ascii-generator -w 0.2 -h 0.1 image.png` and `ascii-generator -wh 0.2 0.1 image.png` using short flags
 
--w, --width VAL = scaling factor for width individually. If specified height must also be specified and both must be greater than 0.
-
---version = Prints version number
-
---help = Prints help menu
+Ex. `ascii-generator --invert --scaling 0.015 high-res-image.png` will scale both the height and width of high-res-image.png to 1.5% the original image's pixel resolution, as well as invert the color scale, so that bright colors to use the densest characters rather than vice-versa. This is equivalent to `ascii-generator -is 0.015 high-res-image.png`.
 
 # Installation/Instructions
 
