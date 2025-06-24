@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args){
-        final String CURRENT_VERSION = "v2.9.1";
+        final String CURRENT_VERSION = "v2.9.2";
 
         GenericInputParser parser = createInputParser();
 
