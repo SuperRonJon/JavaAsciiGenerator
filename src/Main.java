@@ -9,25 +9,24 @@ import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         final String CURRENT_VERSION = "v2.9.2";
 
         GenericInputParser parser = createInputParser();
 
         try {
             parser.parseInput(args);
-        }
-        catch (UnrecognizedOptionException e) {
+        } catch (UnrecognizedOptionException e) {
             System.out.println(e.getMessage());
             return;
         }
 
-        if(parser.getOptionValue("version").equals("True")) {
+        if (parser.getOptionValue("version").equals("True")) {
             System.out.println("ascii-generator " + CURRENT_VERSION);
             return;
         }
 
-        if(parser.getOptionValue("help").equals("True")) {
+        if (parser.getOptionValue("help").equals("True")) {
             parser.printHelp();
             return;
         }
@@ -38,7 +37,7 @@ public class Main {
         double heightScaling;
         double widthScaling;
 
-        try{
+        try {
             invert = Boolean.parseBoolean(parser.getOptionValue('i'));
             removeBorder = Boolean.parseBoolean(parser.getOptionValue('b'));
             scalingFactor = Double.parseDouble(parser.getOptionValue('s'));
@@ -59,13 +58,13 @@ public class Main {
         boolean heightGiven = widthScaling > 0;
 
         String inputFileName = parser.getUnflaggedArgument(0);
-        if(inputFileName == null) {
+        if (inputFileName == null) {
             System.out.println("No input file given");
             return;
         }
         File inputFile = new File(inputFileName);
 
-        if(!inputFile.exists()) {
+        if (!inputFile.exists()) {
             System.out.println("Input file \"" + inputFileName + "\" not found... Ensure the path is correct and the file exists.");
             return;
         }
@@ -77,41 +76,46 @@ public class Main {
             image = null;
         }
 
-        if(image == null) {
+        if (image == null) {
             System.out.println("Error parsing input file to an image... Ensure the file is a valid image file format.");
             return;
         }
 
         AsciiGenerator generator = new AsciiGenerator();
         boolean evenScaling = (!widthGiven && !heightGiven);
-        if(!evenScaling && (widthScaling <= 0 || heightScaling <= 0)) {
+        if (!evenScaling && (widthScaling <= 0 || heightScaling <= 0)) {
             System.out.println("Invalid scaling parameters. \nIf not using equivalent scaling for the height and width (s)," +
                     "\nboth height (h) and width (w) parameters must be supplied and be greater than 0.");
             return;
         }
 
-        if(toFile) {
+        if (toFile) {
             File outputFile = new File(outputFileName);
             System.out.println("Writing to " + outputFile.getAbsolutePath());
-            if(evenScaling) {
-                generator.writeImageToFile(image, outputFileName, scalingFactor, invert, removeBorder);
+            if (evenScaling) {
+                try {
+                    generator.writeImageToFile(image, outputFileName, scalingFactor, invert, removeBorder);
+                } catch (IOException e) {
+                    System.out.println("Unable to create output file " + outputFileName + ": " + e.getMessage());
+                }
+            } else {
+                try {
+                    generator.writeImageToFile(image, outputFileName, widthScaling, heightScaling, invert, removeBorder);
+                } catch (IOException e) {
+                    System.out.println("Unable to create output file " + outputFileName + ": " + e.getMessage());
+                }
+
             }
-            else {
-                generator.writeImageToFile(image, outputFileName, widthScaling, heightScaling, invert, removeBorder);
-            }
-        }
-        else {
-            if(evenScaling) {
+        } else {
+            if (evenScaling) {
                 System.out.print(generator.imageToString(image, scalingFactor, invert, removeBorder));
-            }
-            else {
+            } else {
                 System.out.print(generator.imageToString(image, widthScaling, heightScaling, invert, removeBorder));
             }
         }
     }
 
-    private static GenericInputParser createInputParser()
-    {
+    private static GenericInputParser createInputParser() {
         GenericInputParser parser = new GenericInputParser("Ascii Art Generator", "ascii-generator [OPTIONS...] image/file/path.jpg");
         parser.addOption('i', "invert", "Invert color so that the brightest pixels use the denses characters");
         parser.addOption('b', "remove-border", "Removes border that sometimes appears on non-inverted images");
