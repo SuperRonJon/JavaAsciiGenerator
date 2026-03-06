@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) {
-        final String CURRENT_VERSION = "v2.9.2";
+        final String CURRENT_VERSION = "v3.0.0";
 
         GenericInputParser parser = createInputParser();
 
@@ -81,7 +81,8 @@ public class Main {
             return;
         }
 
-        AsciiGenerator generator = new AsciiGenerator();
+        String characterSet = parser.getOptionValue("characters");
+        AsciiGenerator generator = new AsciiGenerator(characterSet);
         boolean evenScaling = (!widthGiven && !heightGiven);
         if (!evenScaling && (widthScaling <= 0 || heightScaling <= 0)) {
             System.out.println("Invalid scaling parameters. \nIf not using equivalent scaling for the height and width (s)," +
@@ -117,6 +118,7 @@ public class Main {
 
     private static GenericInputParser createInputParser() {
         GenericInputParser parser = new GenericInputParser("Ascii Art Generator", "ascii-generator [OPTIONS...] image/file/path.jpg");
+        parser.addOption('c', "characters", true, "@%#*+=-:. ", "Character set to use for the image. Default is \"@%#*+=-:. \"");
         parser.addOption('i', "invert", "Invert color so that the brightest pixels use the denses characters");
         parser.addOption('b', "remove-border", "Removes border that sometimes appears on non-inverted images");
         parser.addOption('f', "to-file", true, "", "Output to file, takes output filepath as VAL");

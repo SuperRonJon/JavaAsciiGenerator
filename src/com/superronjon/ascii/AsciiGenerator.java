@@ -10,6 +10,16 @@ import java.nio.charset.StandardCharsets;
 
 public class AsciiGenerator {
 
+    final String asciiCharacters;
+
+    public AsciiGenerator() {
+        asciiCharacters = "@%#*+=-:. ";
+    }
+
+    public AsciiGenerator(final String characterSet) {
+        asciiCharacters = characterSet;
+    }
+
     public void writeImageToFile(BufferedImage img, String outFileName, double scaling, boolean invert, boolean removeBorder) throws IOException {
         writeImageToFile(img, outFileName, scaling, scaling, invert, removeBorder);
     }
@@ -33,7 +43,6 @@ public class AsciiGenerator {
     }
 
     public String imageToString(BufferedImage img, double scalingWidth, double scalingHeight, boolean invert, boolean removeBorder) {
-        final String asciiCharacters = "@%#*+=-:. ";
         BufferedImage scaledImage = scaleImage(img, scalingWidth, scalingHeight);
         double[][] brightnessValues = getBrightnessValues(scaledImage);
         StringBuilder builder = new StringBuilder();
